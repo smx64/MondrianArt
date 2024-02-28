@@ -36,7 +36,7 @@ function preload()
 {
   mondrianImage = loadImage("./NeonMondrian.jpg");
   designerImage = loadImage("./DesignerImage.jpg");
-  headerFont = loadFont("./BlackHan.ttf");
+  headerFont = loadFont("./Kanit.ttf");
 }
 
 function receiveSerial()
@@ -82,7 +82,7 @@ function connectToSerial()
 function setup()
 {
   createCanvas(windowWidth, windowHeight);
-  background(255);
+  background(25);
 
   readyToReceive = false;
   serialConnect = createSerial();
@@ -97,54 +97,59 @@ function setup()
   mondrianDup.resize(0,height);
 
   //code for generating interface text
-  fill(225,50,150);
+  fill(255);
   textFont(headerFont);
   textAlign(CENTER,CENTER);
-  textSize(45);
-  text("neon mondrian", width/1.32, 50);
+  textSize(60);
+  text("mondrian", width/1.375, 40);
+  fill(0,255,225);
+  text("art", width/1.185 , 40);
 
-  fill(0);
+  fill(200);
   textFont("sans-serif");
-  textSize(13);
-  text("- interactive color-changing image via physical computing -", width/1.32, 82);
+  textSize(14);
+  text("- interactive image manipulation via physical computing -", width/1.325, 87);
 
   textSize(16);
-  text("Choose color for the red pixels:", width/1.6, height/3.5)
-  text("Choose color for the yellow pixels:", width/1.585, height/2.85)
-  text("Choose color for the blue pixels:", width/1.595, height/2.38)
-  text("Toggle transparency for all pixels:", width/1.587, height/1.95)
+  fill(255);
+  textFont(headerFont);
+  text("Change RED pixels to:", width/1.5, height/3.6);
+  text("Change YELLOW pixels to:", width/1.525, height/2.89);
+  text("Change BLUE pixels to:", width/1.505, height/2.42);
+  text("Toggle transparency for ALL coloured pixels", width/1.33, height/1.82);
 
   //code for creating color-pickers for each primary color
   redPicker = createColorPicker("Red");
-  redPicker.position(width/1.38, height/3.75)
+  redPicker.position(width/1.35, height/3.75);
   
   yellowPicker = createColorPicker("Yellow");
-  yellowPicker.position(width/1.38, height/3)
+  yellowPicker.position(width/1.35, height/3);
   
   bluePicker = createColorPicker("Blue");
-  bluePicker.position(width/1.38, height/2.5);
+  bluePicker.position(width/1.35, height/2.5);
 
   alphaSlider = createSlider(0, 255, 128, 1);
-  alphaSlider.position(width/1.38, height/2);
+  alphaSlider.position(width/1.49, height/2);
   alphaSlider.style("width","255px");
 
   designerRadio = createRadio();
   designerRadio.option('ShowOG','Show Original Image');
   designerRadio.option('ShowIMG','Show Collage Image');
   designerRadio.selected('ShowOG');
-  designerRadio.position(width/1.82, height/1.6);
+  designerRadio.position(width/1.55, height/1.55);
   designerRadio.style('font-family','sans-serif');
 
   designerRadio_Val = designerRadio.value();
 
-  connectButton = createButton("Initiate Connection");
-  connectButton.position(width/1.82, height/1.3);
+  connectButton = createButton("Initiate Serial Connection");
+  connectButton.position(width/1.41, height/1.29);
   connectButton.mousePressed(connectToSerial);
 
   textAlign(CENTER, CENTER);
-  text("Transparency & Panel-Image will be controlled by potentiometer and button press", width/1.358, height/1.2);
-  fill(255,0,0);
-  text("once serial connection is established successfully", width/1.51, height/1.16);
+  textSize(15);
+  text("Transparency & Panel-Image will be controlled by potentiometer and button press", width/1.32, height/1.1);
+  fill(0,255,225);
+  text("once serial connection is established successfully", width/1.32, height/1.07);
 }
 
 function draw()
